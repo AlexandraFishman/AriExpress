@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1064101138228",
+    "firebase_url": "https://ariexpress-3bb59.firebaseio.com",
+    "project_id": "ariexpress-3bb59",
+    "storage_bucket": "ariexpress-3bb59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064101138228:android:2d61d2369279d129",
+        "android_client_info": {
+          "package_name": "com.example.emotz.ariexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064101138228-1ghil6qhi67d74uu35uake0nabog58b8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJpZ7nT1zq6f7Qrly8b8uuUBDDbUjCfeY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
