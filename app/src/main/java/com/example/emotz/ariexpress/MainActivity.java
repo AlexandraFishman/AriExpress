@@ -10,38 +10,37 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Firebase mRef;
+    private Firebase productsDatabase;
 
-    private ArrayList<String> mUsername =  new ArrayList<>();
+    private ArrayList<String> productsList =  new ArrayList<>();
 
-    private ListView mListView;
+    private ListView productsListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
 
-        mRef = new Firebase("https://ariexpress-3bb59.firebaseio.com/Product");
+        productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
+//        productsDatabase = FirebaseDatabase.getInstance().getReference();
+        productsListView = (ListView) findViewById(R.id.listView);
 
-        mListView = (ListView) findViewById(R.id.listView);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, mUsername);
+        productsListView.setAdapter(arrayAdapter);
 
-        mListView.setAdapter(arrayAdapter);
-
-        mRef.addChildEventListener(new ChildEventListener() {
+        productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String value = dataSnapshot.getValue(String.class);
-                mUsername.add(value);
+                productsList.add(value);
                 arrayAdapter.notifyDataSetChanged();
             }
 
