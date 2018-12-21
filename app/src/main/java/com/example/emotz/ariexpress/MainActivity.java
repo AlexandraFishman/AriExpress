@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -13,6 +14,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.example.emotz.ariexpress.modules.Product;
 
 import java.util.ArrayList;
 
@@ -63,9 +65,24 @@ public class MainActivity extends AppCompatActivity {
         productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String value = dataSnapshot.getValue(String.class);
-                productsList.add(value);
+                /////
+                Log.d("datasnapshot key = ", dataSnapshot.getKey());
+                Product prod = dataSnapshot.getValue(Product.class);
+                Log.d("Value = ", prod.toString());
+                productsList.add(prod.toString());
                 arrayAdapter.notifyDataSetChanged();
+                /////
+                ///////
+//                for (DataSnapshot products : dataSnapshot.getChildren()) {
+//                    String value = products.getValue(String.class); //child("Prod1")
+//                    productsList.add(value);
+//                    arrayAdapter.notifyDataSetChanged();
+//                }
+                ///////
+
+//                String value = dataSnapshot.getValue(String.class);
+//                productsList.add(value);
+//                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
