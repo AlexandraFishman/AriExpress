@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v == button_login){
                     startActivity(new Intent(getApplicationContext(),
-                            AdminActivity.class));
+                            LogInActivity.class));
                 }
             }
         });
