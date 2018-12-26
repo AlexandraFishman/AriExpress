@@ -29,20 +29,20 @@ public class AdminActivity extends AppCompatActivity {
             Product newProduct = new Product(productName.getText().toString(), Double.parseDouble(productPrice.getText().toString()), Integer.parseInt(productQuantity.getText().toString()));
             productsDatabase = FirebaseDatabase.getInstance().getReference().child("Products").push();
             productsDatabase.setValue(newProduct)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(AdminActivity.this,"Item was added successfully!!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        Toast.makeText(AdminActivity.this,"Failed adding item",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(AdminActivity.this,"Item was added successfully!!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(Exception e) {
+                            Toast.makeText(AdminActivity.this,"Failed adding item",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
     }
 
     public void removeItem(EditText productId){
