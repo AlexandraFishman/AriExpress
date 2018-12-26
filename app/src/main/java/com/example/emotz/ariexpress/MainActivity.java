@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Firebase productsDatabase;
+    public Firebase productsDatabase;
     private Button button_register;
     private Button button_login;
 
