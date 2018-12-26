@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v == button_login){
                     startActivity(new Intent(getApplicationContext(),
-                            LogInActivity.class));
+                            AdminActivity.class));
                 }
             }
         });
@@ -65,24 +65,11 @@ public class MainActivity extends AppCompatActivity {
         productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                /////
                 Log.d("datasnapshot key = ", dataSnapshot.getKey());
                 Product prod = dataSnapshot.getValue(Product.class);
                 Log.d("Value = ", prod.toString());
                 productsList.add(prod.toString());
                 arrayAdapter.notifyDataSetChanged();
-                /////
-                ///////
-//                for (DataSnapshot products : dataSnapshot.getChildren()) {
-//                    String value = products.getValue(String.class); //child("Prod1")
-//                    productsList.add(value);
-//                    arrayAdapter.notifyDataSetChanged();
-//                }
-                ///////
-
-//                String value = dataSnapshot.getValue(String.class);
-//                productsList.add(value);
-//                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override

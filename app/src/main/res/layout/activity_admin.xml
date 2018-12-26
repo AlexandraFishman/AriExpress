@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/AddHeader"
+        android:layout_width="167dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="198dp"
+        android:text="Add"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toTopOf="@+id/AddButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/DeleteHeader"
+        android:layout_width="159dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="25dp"
+        android:lineSpacingExtra="18sp"
+        android:text="Delete"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toTopOf="@+id/productIdText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProductQuatityText" />
+
+    <TextView
+        android:id="@+id/ProductNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="34dp"
+        android:text="@string/product_name"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toTopOf="@+id/ProductPriceText"
+        app:layout_constraintEnd_toEndOf="@+id/AddHeader"
+        app:layout_constraintTop_toBottomOf="@+id/AddHeader" />
+
+    <TextView
+        android:id="@+id/ProductPriceText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="30dp"
+        android:text="Product Price:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toTopOf="@+id/ProductQuatityText"
+        app:layout_constraintEnd_toEndOf="@+id/ProductNameText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ProductQuatityText"
+        app:layout_constraintTop_toBottomOf="@+id/ProductNameText" />
+
+    <TextView
+        android:id="@+id/ProductQuatityText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="69dp"
+        android:text="Product Quatity:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toTopOf="@+id/DeleteHeader"
+        app:layout_constraintEnd_toEndOf="@+id/productIdText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/ProductNameText"
+        app:layout_constraintTop_toBottomOf="@+id/ProductPriceText" />
+
+    <TextView
+        android:id="@+id/productIdText"
+        android:layout_width="153dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="172dp"
+        android:text="Product Id:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="18sp"
+        app:fontFamily="casual"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/DeleteHeader"
+        app:layout_constraintTop_toBottomOf="@+id/DeleteHeader" />
+
+    <EditText
+        android:id="@+id/ProductNameTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/ProductNameText"
+        app:layout_constraintTop_toTopOf="@+id/ProductNameText" />
+
+    <EditText
+        android:id="@+id/productPriceTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="price"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/ProductNameTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/ProductNameTextBox" />
+
+    <EditText
+        android:id="@+id/productQuantityTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="quantity"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ProductQuatityText"
+        app:layout_constraintStart_toStartOf="@+id/productPriceTextBox" />
+
+    <EditText
+        android:id="@+id/productIdTextBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="id"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/productIdText"
+        app:layout_constraintStart_toEndOf="@+id/DeleteHeader" />
+
+    <Button
+        android:id="@+id/AddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginBottom="124dp"
+        android:background="@color/design_default_color_primary"
+        android:text="Add"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/DeleteButton"
+        app:layout_constraintStart_toStartOf="@+id/ProductQuatityText"
+        app:layout_constraintTop_toBottomOf="@+id/AddHeader" />
+
+    <Button
+        android:id="@+id/DeleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="98dp"
+        android:background="@color/design_default_color_primary"
+        android:text="Delete"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/AddButton"
+        app:layout_constraintStart_toStartOf="@+id/AddButton"
+        app:layout_constraintTop_toBottomOf="@+id/AddButton" />
+</android.support.constraint.ConstraintLayout>
