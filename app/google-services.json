@@ -23,14 +23,6 @@
           }
         },
         {
-          "client_id": "1064101138228-bn1a1cetb9i75gkq896i0gki4ot564v2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.emotz.ariexpress",
-            "certificate_hash": "6be174a6043186350037ad01da7f3837d8d8de83"
-          }
-        },
-        {
           "client_id": "1064101138228-1ghil6qhi67d74uu35uake0nabog58b8.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -1,12 +1,13 @@
 package com.example.emotz.ariexpress;
 
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.firebase.client.ChildEventListener;
@@ -28,31 +29,25 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView productsListView;
 
+    private Button logRegButt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
-        button_register = (Button)findViewById(R.id.moveRegButt);
-        button_login = (Button)findViewById(R.id.moveLogButt);
-        button_register.setOnClickListener(new View.OnClickListener() {
+
+        logRegButt = (Button)findViewById(R.id.logRegButt);//move to log in/register
+        logRegButt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v == button_register){
-                    startActivity(new Intent(getApplicationContext(),
-                            RegisterActivity.class));
-                }
-            }
-        });
-        button_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == button_login){
+                if (v == logRegButt){
                     startActivity(new Intent(getApplicationContext(),
                             LogInActivity.class));
                 }
             }
         });
+
 
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
 //        productsDatabase = FirebaseDatabase.getInstance().getReference();
