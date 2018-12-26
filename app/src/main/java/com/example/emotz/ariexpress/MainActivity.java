@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
 
+
         //handle listview and assign adapter
         ListView lView = (ListView)findViewById(R.id.listView);
         lView.setAdapter(adapter);
