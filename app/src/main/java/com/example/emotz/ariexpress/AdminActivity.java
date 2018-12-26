@@ -4,14 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.emotz.ariexpress.MainActivity;
 import com.example.emotz.ariexpress.modules.Product;
-import com.firebase.client.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 
 public class AdminActivity extends AppCompatActivity {
@@ -25,19 +24,25 @@ public class AdminActivity extends AppCompatActivity {
 
     private DatabaseReference productsDatabase;
 
-    public boolean addNewItem(EditText productName, EditText productPrice, EditText productQuantity){
-        try {
+    public void addNewItem(EditText productName, EditText productPrice, EditText productQuantity){
             Product newProduct = new Product(productName.getText().toString(), Double.parseDouble(productPrice.getText().toString()), Integer.parseInt(productQuantity.getText().toString()));
             productsDatabase = FirebaseDatabase.getInstance().getReference().child("Products").push();
-            productsDatabase.setValue(newProduct);
-            Toast.makeText(AdminActivity.this, newProduct.toString(),
-                    Toast.LENGTH_LONG).show();
-            return true;
-        }catch (Exception e){
-            Toast.makeText(AdminActivity.this, e.toString(),
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }
+            productsDatabase.setValue(newProduct)
+        productsDatabase.setValue(newProduct)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(AdminActivity.this,"Item was added successfully!!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText(AdminActivity.this,"Failed adding item",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     @Override
@@ -54,10 +59,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == addProductButton){
-                    boolean success = addNewItem(productName,productPrice,productQuantity);
-                    String msg = productName.getText().toString()+ " "+ productPrice.getText().toString() + " " + productQuantity.getText().toString();
-//                    Toast.makeText(AdminActivity.this, msg,
-//                            Toast.LENGTH_LONG).show();
+                    addNewItem(productName,productPrice,productQuantity);
                 }
             }
         });
