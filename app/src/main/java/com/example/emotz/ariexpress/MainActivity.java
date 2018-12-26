@@ -1,66 +1,42 @@
 package com.example.emotz.ariexpress;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.emotz.ariexpress.modules.MyCustomAdapter;
+import com.example.emotz.ariexpress.modules.Product;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.example.emotz.ariexpress.modules.Product;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private Firebase productsDatabase;
-    private Button button_register;
-    private Button button_login;
 
-    private ArrayList<String> productsList =  new ArrayList<>();
 
-    private ListView productsListView;
+    private ArrayList<String> productsList =  new ArrayList<String>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
-        button_register = (Button)findViewById(R.id.moveRegButt);
-        button_login = (Button)findViewById(R.id.moveLogButt);
-        button_register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == button_register){
-                    startActivity(new Intent(getApplicationContext(),
-                            RegisterActivity.class));
-                }
-            }
-        });
-        button_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == button_login){
-                    startActivity(new Intent(getApplicationContext(),
-                            LogInActivity.class));
-                }
-            }
-        });
-
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
 //        productsDatabase = FirebaseDatabase.getInstance().getReference();
-        productsListView = (ListView) findViewById(R.id.listView);
+
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
 
-        productsListView.setAdapter(arrayAdapter);
+
+      //  productsList.add("a");
 
         productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -70,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 Product prod = dataSnapshot.getValue(Product.class);
                 Log.d("Value = ", prod.toString());
                 productsList.add(prod.toString());
-                arrayAdapter.notifyDataSetChanged();
+               arrayAdapter.notifyDataSetChanged();
                 /////
                 ///////
 //                for (DataSnapshot products : dataSnapshot.getChildren()) {
@@ -105,5 +81,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+      ArrayList<String> list = new ArrayList<String>();
+      arrayAdapter.notifyDataSetChanged();
+      list.addAll(productsList);
+
+
+        MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
+
+        //handle listview and assign adapter
+        ListView lView = (ListView)findViewById(R.id.listView);
+        lView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
     }
 }
