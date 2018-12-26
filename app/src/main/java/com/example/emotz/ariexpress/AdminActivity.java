@@ -28,7 +28,7 @@ public class AdminActivity extends AppCompatActivity {
     public void addNewItem(EditText productName, EditText productPrice, EditText productQuantity){
             Product newProduct = new Product(productName.getText().toString(), Double.parseDouble(productPrice.getText().toString()), Integer.parseInt(productQuantity.getText().toString()));
             productsDatabase = FirebaseDatabase.getInstance().getReference().child("Products").push();
-        productsDatabase.setValue(newProduct)
+            productsDatabase.setValue(newProduct)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -43,6 +43,26 @@ public class AdminActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    public void removeItem(EditText productId){
+        productsDatabase = FirebaseDatabase.getInstance().getReference().child("Products").child(productId.getText().toString());
+        productsDatabase.removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(AdminActivity.this,"Item removed!!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Toast.makeText(AdminActivity.this,"Failed removing item",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+
     }
 
     @Override
@@ -69,9 +89,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == removeProductButton){
-//                    removeItem();
-                    Toast.makeText(AdminActivity.this,productId.getText().toString(),
-                            Toast.LENGTH_LONG).show();
+                    removeItem(productId);
                 }
             }
         });
