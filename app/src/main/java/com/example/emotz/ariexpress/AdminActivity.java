@@ -26,15 +26,23 @@ public class AdminActivity extends AppCompatActivity {
     private DatabaseReference productsDatabase;
 
     public boolean addNewItem(EditText productName, EditText productPrice, EditText productQuantity){
-        Product newProduct = new Product(productName.getText().toString(),Double.parseDouble(productPrice.getText().toString()),Integer.parseInt(productQuantity.getText().toString()));
-        return true;
+        try {
+            Product newProduct = new Product(productName.getText().toString(), Double.parseDouble(productPrice.getText().toString()), Integer.parseInt(productQuantity.getText().toString()));
+            productsDatabase = FirebaseDatabase.getInstance().getReference().child("Products").push();
+            productsDatabase.setValue(newProduct);
+            Toast.makeText(AdminActivity.this, newProduct.toString(),
+                    Toast.LENGTH_LONG).show();
+            return true;
+        }catch (Exception e){
+            Toast.makeText(AdminActivity.this, e.toString(),
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Firebase productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
-        productsDatabase =  FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_admin);
         addProductButton = (Button)findViewById(R.id.AddButton);
         removeProductButton = (Button)findViewById(R.id.DeleteButton);
@@ -46,14 +54,10 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (v == addProductButton){
-//                    startActivity(new Intent(getApplicationContext(),
-//                            RegisterActivity.class));
-
                     boolean success = addNewItem(productName,productPrice,productQuantity);
                     String msg = productName.getText().toString()+ " "+ productPrice.getText().toString() + " " + productQuantity.getText().toString();
-                            //" was added!";
-                    Toast.makeText(AdminActivity.this, msg,
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(AdminActivity.this, msg,
+//                            Toast.LENGTH_LONG).show();
                 }
             }
         });
