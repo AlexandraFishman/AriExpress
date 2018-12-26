@@ -23,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText password;
     private EditText email;
     private Button button_register;
-    private Button button_login;
+    private Button button_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,18 @@ public class RegisterActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.emailReg);
         password =(EditText) findViewById(R.id.pwdReg);
         button_register = (Button)findViewById(R.id.regButt);
-        button_login = (Button)findViewById(R.id.logButt);
+        button_back = (Button)findViewById(R.id.backButt);
         mAuth = FirebaseAuth.getInstance();
+
+        button_back.setOnClickListener(new View.OnClickListener() {//go to log in page
+            @Override
+            public void onClick(View v) {
+                if (v == button_back){
+                    startActivity(new Intent(getApplicationContext(),
+                            LogInActivity.class));
+                }
+            }
+        });
 
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
     public void RegisterUser(){
         String Email = email.getText().toString().trim();
@@ -67,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 Toast.makeText(RegisterActivity.this, "registration successful",
                                         Toast.LENGTH_SHORT).show();
                                 finish();
-                                startActivity(new Intent(getApplicationContext(), UserActivity.class));
+                                startActivity(new Intent(getApplicationContext(), LogInActivity.class));
                             }else{
                                 Toast.makeText(RegisterActivity.this, "Couldn't register, try again",
                                         Toast.LENGTH_SHORT).show();
