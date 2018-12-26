@@ -54,8 +54,8 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-        Button addBtn = (Button)view.findViewById(R.id.add_btn);
+        Button deleteBtn = (Button)view.findViewById(R.id.cart_btn);
+
 
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -64,13 +64,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
                 notifyDataSetChanged();
             }
         });
-        addBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                notifyDataSetChanged();
-            }
-        });
+
         notifyDataSetChanged();
         return view;
     }

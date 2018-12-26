@@ -15,34 +15,28 @@ import com.firebase.client.FirebaseError;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class List2Activity extends AppCompatActivity {
 
     private Firebase productsDatabase;
-
-
-    private ArrayList<String> productsList =  new ArrayList<String>();
+    private ArrayList<String> productsList =  new ArrayList<>();
 
     private ListView productsListView;
 
-    private MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list2);
         Firebase.setAndroidContext(this);
-        setContentView(R.layout.activity_main);
 
-
+        //generate list
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
 //        productsDatabase = FirebaseDatabase.getInstance().getReference();
         productsListView = (ListView) findViewById(R.id.listView);
-        final ListView lView = (ListView)findViewById(R.id.listView);
+
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
-        lView.setAdapter(adapter);
-      //  productsListView.setAdapter(arrayAdapter);
-      //  productsList.add("a");
 
-
+        productsListView.setAdapter(arrayAdapter);
 
         productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
@@ -52,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 Product prod = dataSnapshot.getValue(Product.class);
                 Log.d("Value = ", prod.toString());
                 productsList.add(prod.toString());
-
-               adapter.notifyDataSetChanged();
+                arrayAdapter.notifyDataSetChanged();
                 /////
                 ///////
 //                for (DataSnapshot products : dataSnapshot.getChildren()) {
@@ -89,23 +82,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-//      ArrayList<String> list = new ArrayList<String>();
-//      arrayAdapter.notifyDataSetChanged();
-//      list.addAll(productsList);
-//
-//
-
-
+        //instantiate custom adapter
+        MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
 
         //handle listview and assign adapter
-
-
-        adapter.notifyDataSetChanged();
-
-    }
-
-    public void t(){
-
+        ListView lView = (ListView) findViewById(R.id.listView);
+        lView.setAdapter(adapter);
     }
 }
