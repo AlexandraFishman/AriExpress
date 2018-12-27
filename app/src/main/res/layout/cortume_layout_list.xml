@@ -15,12 +15,11 @@
 
     <Button
         android:id="@+id/cart_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="71dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
-        android:background="@mipmap/ic_launcher_round"
-        android:text="toCart" />
+        android:background="@drawable/ic_action_name" />
 
 </RelativeLayout>

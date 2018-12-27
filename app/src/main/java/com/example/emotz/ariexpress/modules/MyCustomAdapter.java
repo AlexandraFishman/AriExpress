@@ -1,6 +1,7 @@
 package com.example.emotz.ariexpress.modules;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,6 @@ import java.util.ArrayList;
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list = new ArrayList<String>();
     private Context context;
-
-
-
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
         this.context = context;
@@ -31,6 +29,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
 
     @Override
     public Object getItem(int pos) {
+
         return list.get(pos);
     }
 
@@ -41,7 +40,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, final ViewGroup parent) {
         View view = convertView;
         notifyDataSetChanged();
         if (view == null) {
@@ -50,17 +49,20 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         }
 
         //Handle TextView and display string from your list
+        //here we take a single item and print it to the list, I took only name
         TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position));
+        listItemText.setText(list.get(position).split("\n")[0]);
 
         //Handle buttons and add onClickListeners
-        Button deleteBtn = (Button)view.findViewById(R.id.cart_btn);
+        Button cartBtn = (Button)view.findViewById(R.id.cart_btn);
 
-
-        deleteBtn.setOnClickListener(new View.OnClickListener(){
+        cartBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //do something
+                Log.d("?!$?!?!arbel$?!?!$?!?= ", list.get(position).toString()+" "+ position);
+                //parent.getChildAt(0).getId();
+                //Log.d("out: ", );
                 notifyDataSetChanged();
             }
         });

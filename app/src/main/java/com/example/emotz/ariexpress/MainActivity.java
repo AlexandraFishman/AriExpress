@@ -3,7 +3,6 @@ package com.example.emotz.ariexpress;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.emotz.ariexpress.modules.MyCustomAdapter;
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> productsList =  new ArrayList<String>();
 
-    private ListView productsListView;
+    //private ListView productsListView;
 
     private MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
 
@@ -35,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
 //        productsDatabase = FirebaseDatabase.getInstance().getReference();
-        productsListView = (ListView) findViewById(R.id.listView);
+        //productsListView = (ListView) findViewById(R.id.listView);
         final ListView lView = (ListView)findViewById(R.id.listView);
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
+        //final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
         lView.setAdapter(adapter);
       //  productsListView.setAdapter(arrayAdapter);
       //  productsList.add("a");
@@ -52,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 Product prod = dataSnapshot.getValue(Product.class);
                 Log.d("Value = ", prod.toString());
                 productsList.add(prod.toString());
-
-               adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 /////
                 ///////
 //                for (DataSnapshot products : dataSnapshot.getChildren()) {
