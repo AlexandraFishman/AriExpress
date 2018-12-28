@@ -17,12 +17,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private Firebase productsDatabase;
-
-
     private ArrayList<String> productsList =  new ArrayList<String>();
-
     //private ListView productsListView;
-
     private MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
 
     @Override
@@ -49,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 /////
                 Log.d("datasnapshot key = ", dataSnapshot.getKey());
                 Product prod = dataSnapshot.getValue(Product.class);
+                prod.setID(dataSnapshot.getKey());
                 Log.d("Value = ", prod.toString());
                 productsList.add(prod.toString());
                 adapter.notifyDataSetChanged();
@@ -100,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         adapter.notifyDataSetChanged();
-
-    }
-
-    public void t(){
 
     }
 }
