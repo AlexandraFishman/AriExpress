@@ -1,5 +1,6 @@
 package com.example.emotz.ariexpress;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.emotz.ariexpress.modules.Product;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,6 +20,10 @@ public class AdminActivity extends AppCompatActivity {
 
     private Button addProductButton;
     private Button removeProductButton;
+    private Button logOut;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     private EditText productName;
     private EditText productPrice;
@@ -75,6 +82,21 @@ public class AdminActivity extends AppCompatActivity {
         productPrice = (EditText)findViewById(R.id.productPriceTextBox);
         productQuantity = (EditText)findViewById(R.id.productQuantityTextBox);
         productId = (EditText)findViewById(R.id.productIdTextBox2);
+        logOut = (Button)findViewById(R.id.logOutButt);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();//use this to get user info, will be through the user object
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v==logOut){
+                    if (user != null) {
+                        mAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                    }
+                }
+            }
+        });
 
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override

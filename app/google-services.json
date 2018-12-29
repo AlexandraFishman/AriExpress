@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "1064101138228-vetqs8in85u68krjos865uueuije0dvr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.emotz.ariexpress",
-            "certificate_hash": "85ce942f1de86737ae6284ae6ca38e84f48d84fc"
-          }
-        },
-        {
           "client_id": "1064101138228-1ghil6qhi67d74uu35uake0nabog58b8.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1064101138228-1ghil6qhi67d74uu35uake0nabog58b8.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

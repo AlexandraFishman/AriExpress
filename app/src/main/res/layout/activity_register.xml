@@ -43,12 +43,14 @@
 
     <Button
         android:id="@+id/regButt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="47dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="44dp"
+        android:background="@color/design_default_color_primary"
         android:text="Create a new account"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pwdReg"
         tools:text="Create a new account" />
@@ -62,7 +64,9 @@
         android:layout_marginTop="46dp"
         android:layout_marginEnd="44dp"
         android:layout_marginRight="44dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:text="back"
+        android:background="@color/design_default_color_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toEndOf="@+id/regButt"
