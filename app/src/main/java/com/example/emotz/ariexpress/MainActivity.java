@@ -3,10 +3,9 @@ package com.example.emotz.ariexpress;
 
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< HEAD
+
 import android.support.v7.app.AppCompatActivity;
-=======
->>>>>>> dev
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,16 +22,15 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
+
     private Firebase productsDatabase;
     private ArrayList<String> productsList =  new ArrayList<String>();
     private ListView productsListView;
-    private Button tolist2;
-=======
-    public Firebase productsDatabase;
+
+
     private Button button_register;
     private Button button_login;
->>>>>>> dev
+
 
 
 
@@ -44,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
-=======
+
+
         logRegButt = (Button)findViewById(R.id.logRegButt);//move to log in/register
         logRegButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
->>>>>>> dev
+
 
 
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
@@ -66,16 +64,7 @@ public class MainActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
 
        productsListView.setAdapter(arrayAdapter);
-        tolist2=(Button)findViewById(R.id.gotoBtn);
-       tolist2.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View v) {
-                Intent startIntent=new Intent(getApplicationContext(), ListViewRegistered.class);
-                //startIntent.putExtra("com.example.arbel.myapplication2.SOMTHING", "Hello World");
-                startActivity(startIntent);
-            }
-        });
 
 
         productsDatabase.addChildEventListener(new ChildEventListener() {

@@ -11,6 +11,8 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,8 @@ public class ListViewRegistered  extends AppCompatActivity {
 
     private Firebase productsDatabase;
     private ArrayList<String> productsList =  new ArrayList<String>();
-    //private ListView productsListView;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
     private MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
 
 
@@ -29,7 +32,8 @@ public class ListViewRegistered  extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_registered_main);
 
-
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
         final ListView lView = (ListView)findViewById(R.id.listView);
         lView.setAdapter(adapter);

@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.emotz.ariexpress.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,6 +25,10 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
     private Context context;
     private DatabaseReference productsDatabase;
     private int count = 0;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private String userID;
+
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
         this.context = context;
@@ -62,20 +68,17 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
 
         //Handle buttons and add onClickListeners
         Button cartBtn = (Button)view.findViewById(R.id.cart_btn);
-
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userID=user.getUid();
         cartBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 //do something
-                count=(count +1)%2;
-                if(count%2==1) {
                     Log.d("productID", ID);
                     addNewItem("id", ID);
                     //parent.getChildAt(0).getId();
                     //Log.d("out: ", );
-                } else{
-                    removeItem(ID);
-                }
                 notifyDataSetChanged();
             }
         });
@@ -83,19 +86,12 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
         notifyDataSetChanged();
         return view;
     }
-    public class ID{
-        public String Name;
-        public String Id;
 
-        public ID(String Name,String ID){
-            this.Name=Name;
-            this.Id=ID;
-        }
 
-    }
+
     public void addNewItem(String productName, String productID){
-        ID newID = new ID(productName,productID);
-        productsDatabase = FirebaseDatabase.getInstance().getReference().child("Cart");
+
+        productsDatabase = FirebaseDatabase.getInstance().getReference().child("Cart").child(userID);
         productsDatabase.child(productID).setValue(productID)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -115,23 +111,23 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
                 });
     }
 
-    public void removeItem(String productID){
-        productsDatabase = FirebaseDatabase.getInstance().getReference().child("Cart").child(productID);
-        productsDatabase.removeValue()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-//                        Toast.makeText(AdminActivity.this,"Item removed!!",
-//                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-//                        Toast.makeText(AdminActivity.this,"Failed removing item",
-//                                Toast.LENGTH_LONG).show();
-                    }
-                });
-
-    }
+//    public void removeItem(String productID){
+//        productsDatabase = FirebaseDatabase.getInstance().getReference().child("Cart").child(productID);
+//        productsDatabase.removeValue()
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+////                        Toast.makeText(AdminActivity.this,"Item removed!!",
+////                                Toast.LENGTH_LONG).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(Exception e) {
+////                        Toast.makeText(AdminActivity.this,"Failed removing item",
+////                                Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//
+//    }
 }
