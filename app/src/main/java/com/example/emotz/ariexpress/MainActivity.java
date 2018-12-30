@@ -70,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("datasnapshot key = ", dataSnapshot.getKey());
+      //          Log.d("datasnapshot key = ", dataSnapshot.getKey());
                 Product prod = dataSnapshot.getValue(Product.class);
-                Log.d("Value = ", prod.toString());
+     //           Log.d("Value = ", prod.toString());
                 productsList.add(prod.toString());
                 arrayAdapter.notifyDataSetChanged();
             }

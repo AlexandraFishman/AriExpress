@@ -9,6 +9,7 @@ public class ProductWithID {
     public double price;
     public int quantity;
     public String ID;
+    public int emount;
 
     public ProductWithID(){
 
@@ -18,6 +19,7 @@ public class ProductWithID {
             this.name = name;
             this.price = price;
             this.quantity = quantity;
+            emount=1;
     }
 
     public Map<String, Object> toMap() {
@@ -30,9 +32,7 @@ public class ProductWithID {
         return result;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+
 
     @Override
     public String toString() {
