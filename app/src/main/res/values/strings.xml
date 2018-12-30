@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AriExpress</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="product_name">Product Name:</string>
 </resources>

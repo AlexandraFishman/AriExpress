@@ -27,7 +27,7 @@ public class UserActivity extends AppCompatActivity {
         Uid = (TextView)findViewById(R.id.profileUid);
         mAuth = FirebaseAuth.getInstance();
         logout = (Button)findViewById(R.id.button_logout);
-        user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();//use this to get user info, will be through the user object
 
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +42,7 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        if (user != null){
+        if (user != null){//HOW TO GET USE INFO - EXAMPLE
             String email = user.getEmail();
             String uid = user.getUid();
             Email.setText(email);
