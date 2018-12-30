@@ -8,7 +8,7 @@ public class Product {
     public String name;
     public double price;
     public int quantity;
-    public String ID;
+
 
     public Product(){
 
@@ -30,13 +30,10 @@ public class Product {
         return result;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
 
     @Override
     public String toString() {
         super.toString();
-        return ("Name: "+this.name+"\n"+ "ID: "+this.ID +"\n"+"Price: "+this.price+"\n"+"Quantity: "+this.quantity);
+        return ("Name: "+this.name+"\n"+"Price: "+this.price+"\n"+"Quantity: "+this.quantity);
     }
 }
