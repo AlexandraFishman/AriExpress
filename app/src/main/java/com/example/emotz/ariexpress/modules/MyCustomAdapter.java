@@ -62,7 +62,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
         }
 
         //Handle TextView and display string from your list
-        //here we take a single item and print it to the list, I took only name
+        //here we take myCart single item and print it to the list, I took only name
         TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
         listItemText.setText(list.get(position).name);
 

@@ -1,5 +1,7 @@
 package com.example.emotz.ariexpress.modules;
 
+import android.widget.EditText;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,17 +11,18 @@ public class ProductWithID {
     public double price;
     public int quantity;
     public String ID;
-    public int emount;
+    public int amount;
+    public EditText amountEditTxt;
 
     public ProductWithID(){
 
     }
 
-    public ProductWithID(String name, double price, int quantity){
-            this.name = name;
-            this.price = price;
-            this.quantity = quantity;
-            emount=1;
+    public ProductWithID(Product prod){
+            this.name = prod.name;
+            this.price = prod.price;
+            this.quantity = prod.quantity;
+            this.amount=1;
     }
 
     public Map<String, Object> toMap() {

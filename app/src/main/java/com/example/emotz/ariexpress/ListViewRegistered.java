@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.emotz.ariexpress.modules.MyCustomAdapter;
+import com.example.emotz.ariexpress.modules.Product;
 import com.example.emotz.ariexpress.modules.ProductWithID;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -57,7 +58,8 @@ public class ListViewRegistered  extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 /////
                 Log.d("datasnapshot key = ", dataSnapshot.getKey());
-                ProductWithID prod = dataSnapshot.getValue(ProductWithID.class);
+                Product product = dataSnapshot.getValue(Product.class);
+                ProductWithID prod = new  ProductWithID(product);
                 prod.ID=(dataSnapshot.getKey());
                 Log.d("Value = ", prod.toString());
                 productsList.add(prod);
