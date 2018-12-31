@@ -76,7 +76,7 @@ public class LogInActivity extends AppCompatActivity {
                             currentUser = mAuth.getCurrentUser();
                             finish();
                             startActivity(new Intent(getApplicationContext(),
-                                    UserActivity.class));
+                                    ListViewRegistered.class));
                         }
                         else {
                             Toast.makeText(LogInActivity.this, "couldn't login",
