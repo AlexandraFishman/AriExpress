@@ -20,7 +20,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ListViewRegistered" />
         <activity android:name=".UserActivity" />
-        <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".UserCart"></activity>
     </application>
 
 </manifest>

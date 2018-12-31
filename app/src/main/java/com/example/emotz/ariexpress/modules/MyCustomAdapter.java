@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
-    private ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<ProductWithID> list = new ArrayList<ProductWithID>();
     private Context context;
     private DatabaseReference productsDatabase;
     private int count = 0;
@@ -29,7 +29,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
     private FirebaseUser user;
     private String userID;
 
-    public MyCustomAdapter(ArrayList<String> list, Context context) {
+    public MyCustomAdapter(ArrayList<ProductWithID> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -53,7 +53,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
 
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
-        final String ID=list.get(position).split("\n")[1].split(":")[1];
+        final String ID=list.get(position).ID;
         View view = convertView;
         notifyDataSetChanged();
         if (view == null) {
@@ -62,9 +62,9 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter  {
         }
 
         //Handle TextView and display string from your list
-        //here we take a single item and print it to the list, I took only name
+        //here we take myCart single item and print it to the list, I took only name
         TextView listItemText = (TextView)view.findViewById(R.id.list_item_string);
-        listItemText.setText(list.get(position).split("\n")[0].split(":")[1]);
+        listItemText.setText(list.get(position).name);
 
         //Handle buttons and add onClickListeners
         Button cartBtn = (Button)view.findViewById(R.id.cart_btn);
