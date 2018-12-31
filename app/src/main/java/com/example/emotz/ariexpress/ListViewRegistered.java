@@ -1,80 +1,70 @@
 package com.example.emotz.ariexpress;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.emotz.ariexpress.modules.MyCustomAdapter;
 import com.example.emotz.ariexpress.modules.Product;
+import com.example.emotz.ariexpress.modules.ProductWithID;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
+public class ListViewRegistered  extends AppCompatActivity {
 
     private Firebase productsDatabase;
-    private ArrayList<String> productsList =  new ArrayList<String>();
-    private ListView productsListView;
+    private ArrayList<ProductWithID> productsList =  new ArrayList<ProductWithID>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
+    private Button toCart;
 
-
-    private Button button_register;
-    private Button button_login;
-
-
-
-
-    private Button logRegButt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registered_main);
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
+        final ListView lView = (ListView)findViewById(R.id.listView);
+        lView.setAdapter(adapter);
 
-
-        logRegButt = (Button)findViewById(R.id.logRegButt);//move to log in/register
-        logRegButt.setOnClickListener(new View.OnClickListener() {
+        toCart = (Button)findViewById(R.id.toCart);//move to log in/register
+        toCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v == logRegButt){
+                if (v == toCart){
                     startActivity(new Intent(getApplicationContext(),
-                            LogInActivity.class));
+                            UserCart.class));
                 }
             }
         });
 
-
-
-        productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
-    // productsDatabase = FirebaseDatabase.getInstance().getReference();
-        productsListView = (ListView) findViewById(R.id.listView);
-
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, productsList);
-
-       productsListView.setAdapter(arrayAdapter);
-
-
-
         productsDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-      //          Log.d("datasnapshot key = ", dataSnapshot.getKey());
-                Product prod = dataSnapshot.getValue(Product.class);
-     //           Log.d("Value = ", prod.toString());
-                productsList.add(prod.toString());
-                arrayAdapter.notifyDataSetChanged();
+                /////
+                Log.d("datasnapshot key = ", dataSnapshot.getKey());
+                Product product = dataSnapshot.getValue(Product.class);
+                ProductWithID prod = new  ProductWithID(product);
+                prod.ID=(dataSnapshot.getKey());
+                Log.d("Value = ", prod.toString());
+                productsList.add(prod);
+                adapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -98,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
 
 }
