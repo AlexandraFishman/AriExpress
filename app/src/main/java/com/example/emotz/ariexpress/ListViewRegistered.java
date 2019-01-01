@@ -28,6 +28,8 @@ public class ListViewRegistered  extends AppCompatActivity {
     private FirebaseUser user;
     private MyCustomAdapter adapter = new MyCustomAdapter(productsList, this);
     private Button toCart;
+    private Button logOutButton;
+
 
 
     @Override
@@ -41,14 +43,25 @@ public class ListViewRegistered  extends AppCompatActivity {
         productsDatabase = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
         final ListView lView = (ListView)findViewById(R.id.listView);
         lView.setAdapter(adapter);
-
-        toCart = (Button)findViewById(R.id.toCart);//move to log in/register
+        logOutButton = (Button)findViewById(R.id.logOutbutton);
+        toCart = (Button)findViewById(R.id.toCart);
         toCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (v == toCart){
                     startActivity(new Intent(getApplicationContext(),
                             UserCart.class));
+                }
+            }
+        });
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v==logOutButton){
+                    if (user != null) {
+                        mAuth.signOut();
+                        startActivity(new Intent(getApplicationContext(), LogInActivity.class));
+                    }
                 }
             }
         });
