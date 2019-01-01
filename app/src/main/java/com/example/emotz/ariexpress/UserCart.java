@@ -1,10 +1,13 @@
 package com.example.emotz.ariexpress;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +39,8 @@ public class UserCart extends AppCompatActivity {
     public Button BuyBtn;
     private ArrayList<ProductWithID> prodList;
     private double totPrice=0;
+    private Button button_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +56,17 @@ public class UserCart extends AppCompatActivity {
         cartDatabase = FirebaseDatabase.getInstance().getReference().child("Cart").child(userID);
         final ListView lView = (ListView)findViewById(R.id.listView);
         lView.setAdapter(adapter);
-
-       // products = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
+        button_back = (Button)findViewById(R.id.backButt);
+        button_back.setOnClickListener(new View.OnClickListener() {//go to log in page
+            @Override
+            public void onClick(View v) {
+                if (v == button_back){
+                    startActivity(new Intent(getApplicationContext(),
+                            ListViewRegistered.class));
+                }
+            }
+        });
+        // products = new Firebase("https://ariexpress-3bb59.firebaseio.com/Products");
 
 
         cartDatabase.addChildEventListener(new ChildEventListener() {
