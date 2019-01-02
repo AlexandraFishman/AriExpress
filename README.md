@@ -1,4 +1,4 @@
-# AriExpress
+![smallogo2](https://user-images.githubusercontent.com/33173449/50603611-cbac7780-0ec3-11e9-8da8-7e1bd0c3074e.png)
 
 This is a shopping app for our Program Structure class project at Ariel University.
 In this app a guest user can only view the file and if they want to make a purchase 
